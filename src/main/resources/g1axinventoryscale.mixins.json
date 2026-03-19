@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"package": "dev.g1ax.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
+	"client": [
+		"GameRendererMixin",
+		"GuiGraphicsMixin",
+		"MouseHandlerMixin",
+		"ScreenMixin",
+		"compat.blur.BlurMixin",
+		"compat.controlify.VirtualMouseHandlerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

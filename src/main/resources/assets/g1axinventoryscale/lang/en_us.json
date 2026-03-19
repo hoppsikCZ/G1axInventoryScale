@@ -1,0 +1,7 @@
+{
+  "g1ax-inventory-scale.title": "G1ax Inventory Scale",
+  "g1ax-inventory-scale.container-scale": "Container Scale",
+  "g1ax-inventory-scale.container-scale.description": "Sets container scaling. Some values may make containers bigger than your screen.",
+  "g1ax-inventory-scale.tooltip-scale": "Tooltip Scale",
+  "g1ax-inventory-scale.tooltip-scale.description": "Sets tooltip scaling."
+}

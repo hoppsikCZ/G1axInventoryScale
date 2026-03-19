@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "g1axinventoryscale",
+	"version": "${version}",
+	"name": "G1ax Inventory Scale",
+	"description": "Allows customizing your inventory and container scaling independent of GUI scale.",
+	"authors": [
+		"AkaTriggered/G1ax"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/G1axInventoryScale",
+		"sources": "https://github.com/AkaTriggered/G1axInventoryScale",
+		"issues": "https://github.com/AkaTriggered/G1axInventoryScale/issues"
+	},
+	"license": "MPL-2.0",
+	"icon": "assets/g1axinventoryscale/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"dev.g1ax.G1axInventoryScale"
+		],
+		"modmenu": [
+			"dev.g1ax.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"g1axinventoryscale.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*"
+	}
+}
