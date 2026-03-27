@@ -25,7 +25,6 @@ import java.util.List;
 @Mixin(GuiGraphics.class)
 public class GuiGraphicsMixin {
     @Shadow @Final private Matrix3x2fStack pose;
-    @Unique Vector2ic v;
     @Unique private int frameX, frameY;
 
     @WrapOperation(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;"))
@@ -34,8 +33,7 @@ public class GuiGraphicsMixin {
         if (!(Minecraft.getInstance().screen instanceof AbstractContainerScreen) || scale == 1.0F) {
             return original.call(instance, width, height, mouseX, mouseY, i, j);
         }
-        v = original.call(instance, (int) (width / scale), (int) (height / scale), mouseX, mouseY, (int) (i / scale), (int) (j / scale));
-        return calculatePos(v, (int) (i * scale), (int) (j * scale), (int) (width / scale), (int) (height / scale));
+        return calculatePos((int) (i * scale), (int) (j * scale), width, height, mouseX, mouseY);
     }
 
     @Inject(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lorg/joml/Matrix3x2fStack;pushMatrix()Lorg/joml/Matrix3x2fStack;", shift = At.Shift.AFTER))
@@ -48,12 +46,12 @@ public class GuiGraphicsMixin {
     }
 
     @Unique
-    public Vector2ic calculatePos(Vector2ic v, int tw, int th, int sw, int sh) {
-        frameX = v.x();
-        frameY = v.y();
+    public Vector2ic calculatePos(int tw, int th, int sw, int sh, int mouseX, int mouseY) {
+        frameX = mouseX + 12;
+        frameY = mouseY - 12;
 
-        if (tw > sw) frameX = frameX - v.x() + 4;
-        if (th > sh) frameY = frameY - v.y() + 4;
+        if (frameX + tw > sw) frameX = Math.max(mouseX - 12 - tw, 4);
+        if (frameY + th + 3 > sh) frameY =  sh - th - 3;
 
         return new Vector2i(0, 0);
     }
